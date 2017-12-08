@@ -1,13 +1,30 @@
+import  { CoursesService } from './courses.service';
 import  { Component } from '@angular/core';
 
 @Component({
 	selector: 'courses', // <couress>
-	template: '<h2>{{getTitle()}}</h2>'
+	template: `<h2>{{getTitle()}}</h2>
+              <ul>
+              <li *ngFor="let course of courses">
+              {{course}}
+              </li>
+              
+              </ul>
+
+	`
 })
 
 export class CourseComponents {
 
-	title = "List of courses1";
+	title = "List of courses";
+	courses;
+
+	constructor(){
+	
+	let service =  new CoursesService();
+	this.courses = service.getCourses();
+
+	}
 
 	getTitle(){
 	  return this.title;
